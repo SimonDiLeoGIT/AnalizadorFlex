@@ -6,5 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Matia/OneDrive/Desktop/UNLu/Materias/TEO/jflex/java-cup-11b-runtime_2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

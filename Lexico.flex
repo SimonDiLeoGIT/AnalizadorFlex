@@ -48,14 +48,14 @@ WRITE = "WRITE"
 ID = {LETRA} ({LETRA} | {DIGITO} | _ ({LETRA}|{DIGITO}))*
 CONST_INT = {DIGITO}+
 CONST_DOU = ({DIGITO}* "." {DIGITO}+) | ({DIGITO}+ "." {DIGITO}*)
-CONST_STR = "“" ({DIGITO}|{LETRA})* "”" 
+CONST_STR = "'" ({DIGITO}|{LETRA})* "'"  
 CONST_BIN = "(" ("0"|"1")+  "," "2" ")"
 CONST_HEX = "("  ({DIGITO} | "A" | "B" | "C" | "D" | "E" | "F")+  "," "16"  ")"
 INTEGER = "INTEGER"
 STRING = "STRING"
 FLOAT = "FLOAT"
 COMMENT = "/*" ~ "*/" // El simbolo ~ incluye cualquier caracter
-INLINE_COMMENT = "//" ~ 
+INLINE_COMMENT = "</" ~ "/>" // El simbolo ~ incluye cualquier caracter
 WHILE = "WHILE"
 IF = "IF"
 ELSE = "ELSE"
@@ -118,7 +118,8 @@ MIDDLE = "MIDDLE"
 {PROGRAM_END}	    {System.out.println("Token PROGRAM_END, encontrado Lexema "+ yytext()); }
 {MIDDLE}	        {System.out.println("Token MIDDLE, encontrado Lexema "+ yytext()); }
 {ESPACIO}		{/* no se realiza accion por lo tanto se ignoran*/}
-{COMENTARIO}	{/* No se realiza accion por lo tanto se ignoran*/}
+{COMMENT}	{/* No se realiza accion por lo tanto se ignoran*/}
+{INLINE_COMMENT}	{/* No se realiza accion por lo tanto se ignoran*/}
 
 }
 
