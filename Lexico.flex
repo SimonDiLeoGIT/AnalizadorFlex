@@ -98,7 +98,7 @@ MIDDLE = "MIDDLE"
 {PUNTO}	              {System.out.println("Token PUNTO, encontrado Lexema "+ yytext()); }
 {DOS_PUNTOS}	      {System.out.println("Token DOS_PUNTOS, encontrado Lexema "+ yytext()); }
 {WRITE}	              {System.out.println("Token WRITE, encontrado Lexema "+ yytext()); }
-{ID}	              {System.out.println("Token WRITE, encontrado Lexema "+ yytext()); }
+{ID}	              {System.out.println("Token ID, encontrado Lexema "+ yytext()); }
 {CONST_INT}	          {System.out.println("Token CONST_INT, encontrado Lexema "+ yytext()); } /* recordar que no debe exceder los 16 bits 0 < entero < 32768 */
 {CONST_DOU}	          {System.out.println("Token CONST_DOU, encontrado Lexema "+ yytext()); } /* recordar que no debe exceder los 32 bits */
 {CONST_STR}	          {System.out.println("Token CONST_STR, encontrado Lexema "+ yytext()); }
