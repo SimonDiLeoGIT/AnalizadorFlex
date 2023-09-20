@@ -15,11 +15,11 @@ Si realizas un cambio en el archivo Lexico.flex y lo compilas usando el jar de j
 El error lo marca en el valor de retorno de esta linea
 
 ```java
-    return new java_cup.runtime.Symbol(sym.EOF);
+return new java_cup.runtime.Symbol(sym.EOF);
 ```
 
 La solucion es cambiar para que retorne null y asi funciona
 
 ```java
-    return null;
+return null;
 ```
