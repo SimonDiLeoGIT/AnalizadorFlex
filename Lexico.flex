@@ -1,4 +1,4 @@
-package ejemploflex;
+package app;
 import java_cup.runtime.*;
 import java.util.*;
 
