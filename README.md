@@ -6,11 +6,11 @@
 -   Crear el archivo 'prueba.txt' con las cadenas que se quieren detectar
 -   Ejecutar la aplicación
 
-## Error Lexico.java
+### Error Lexico.java
 
 Si realizas un cambio en el archivo Lexico.flex y lo compilas usando el jar de jflex, el archivo Lexico.java marca error en una linea específica.
 
-### Solucion
+#### Solucion
 
 El error lo marca en el valor de retorno de esta linea
 
