@@ -7,14 +7,19 @@ import javax.swing.JTextPane;
 import java.awt.TextArea;
 import java.awt.Button;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
@@ -45,10 +50,14 @@ public class View {
 		
 		JTextArea inputTextArea = new JTextArea();
 		inputTextArea.setBounds(10, 39, 404, 592);
+		inputTextArea.setWrapStyleWord(true);
+		inputTextArea.setLineWrap(true);
 		panel.add(inputTextArea);
 		
 		JTextArea outputTextArea = new JTextArea();
 		outputTextArea.setBounds(565, 39, 404, 592);
+		outputTextArea.setWrapStyleWord(true);
+		outputTextArea.setLineWrap(true);
 		panel.add(outputTextArea);
 		outputTextArea.setEditable(false);
 		
@@ -71,12 +80,12 @@ public class View {
 		lblNewLabel.setBounds(10, 10, 104, 24);
 		panel.add(lblNewLabel);
 		
-		JLabel lblResultadoCompilacin = new JLabel("Resultado compilación");
-		lblResultadoCompilacin.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblResultadoCompilacin.setForeground(new Color(0, 0, 0));
-		lblResultadoCompilacin.setFont(new Font("Calibri", Font.ITALIC, 20));
-		lblResultadoCompilacin.setBounds(565, 10, 231, 24);
-		panel.add(lblResultadoCompilacin);
+		JLabel lblResultadoCompilacion = new JLabel("Resultado compilación");
+		lblResultadoCompilacion.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblResultadoCompilacion.setForeground(new Color(0, 0, 0));
+		lblResultadoCompilacion.setFont(new Font("Calibri", Font.ITALIC, 20));
+		lblResultadoCompilacion.setBounds(565, 10, 231, 24);
+		panel.add(lblResultadoCompilacion);
 		
 		
 		
@@ -87,11 +96,28 @@ public class View {
 		mnNewMenu.setBackground(new Color(192, 192, 192));
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Abrir...");
+		JMenuItem mntmNewMenuItem = new JMenuItem("Cargar un archivo...");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+		        fileChooser.showOpenDialog(null);
+
+		        File file = fileChooser.getSelectedFile();
+		        if (file != null) {
+		        	try {
+		        		FileReader fileReader = new FileReader(file);
+		        		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		                String linea;
+		                while ((linea = bufferedReader.readLine()) != null) {
+		                    inputTextArea.append(linea);
+		                }
+
+		                bufferedReader.close();
+		        	} catch (Exception error){
+		        		JOptionPane.showMessageDialog(null, "Error", "Error al abrir el archivo", JOptionPane.ERROR_MESSAGE);
+		        	}
+		        }
 				//TODO: Implementar que al abrir un archivo, el contenido se carge en el TextArea
-				inputTextArea.append("Contenido del archivo... \n");
 			}
 		});
 		mntmNewMenuItem.setBackground(new Color(211, 211, 211));
