@@ -1,0 +1,2 @@
+while WHILE While if If IF 12312 0125 99999.99 99. .9999 'string1test' ''  (F, 16) (F12,16) (H,16)(10,2)(111, 2) (5,2) /*asd*/ MIDDLE WRITE DEFINE ENDDEFINE PROGRAM END
+=+-/*%^<>>=<===&||!(){}[];,.:
