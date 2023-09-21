@@ -18,7 +18,9 @@ public class Main {
     public static void main(String[] args) throws IOException {
         try {
             // TODO code application logic here
-            FileReader f = new FileReader("files/prueba.txt");
+			View window = new View();
+			window.frame.setVisible(true);
+        	FileReader f = new FileReader("files/prueba.txt");
             Lexico Lexer = new Lexico(f);
             Lexer.next_token();
         } catch (FileNotFoundException ex) {
