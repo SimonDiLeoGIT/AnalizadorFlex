@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.Reader;
+import java.io.StringReader;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
@@ -65,7 +67,14 @@ public class View {
 		btnNewButton.setForeground(UIManager.getColor("Button.foreground"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				outputTextArea.append("Resultado compilacion \n");
+				try {					
+					Reader reader = new StringReader(inputTextArea.getText());
+					outputTextArea.setText("Resultado de la compilacion...");
+					Lexico lexer = new Lexico(reader);
+					lexer.next_token();
+				} catch(Exception error ) {
+					JOptionPane.showMessageDialog(null, "Error", "Ocurrió un error al compilar el archivo.", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 18));
@@ -117,7 +126,6 @@ public class View {
 		        		JOptionPane.showMessageDialog(null, "Error", "Error al abrir el archivo", JOptionPane.ERROR_MESSAGE);
 		        	}
 		        }
-				//TODO: Implementar que al abrir un archivo, el contenido se carge en el TextArea
 			}
 		});
 		mntmNewMenuItem.setBackground(new Color(211, 211, 211));

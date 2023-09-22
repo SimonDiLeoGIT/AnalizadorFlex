@@ -5,8 +5,6 @@
  */
 package app;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 
 
@@ -16,17 +14,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        try {
-            // TODO code application logic here
-			View window = new View();
-			window.frame.setVisible(true);
-        	FileReader f = new FileReader("files/prueba.txt");
-            Lexico Lexer = new Lexico(f);
-            Lexer.next_token();
-        } catch (FileNotFoundException ex) {
-            System.out.println("No se encontró el archivo");
-        }
-        
+        View window = new View();
+		window.frame.setVisible(true);
     }
     
 }
