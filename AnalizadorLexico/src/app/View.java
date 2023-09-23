@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
@@ -69,9 +70,23 @@ public class View {
 			public void actionPerformed(ActionEvent e) {
 				try {					
 					Reader reader = new StringReader(inputTextArea.getText());
-					outputTextArea.setText("Resultado de la compilacion...");
+				//	outputTextArea.setText("Resultado de la compilacion...");
 					Lexico lexer = new Lexico(reader);
 					lexer.next_token();
+
+					outputTextArea.setText("");
+
+					// Obtengo la lista de elementos que fue guardando el Lexico
+
+					List<String> elements = lexer.getList(); // Obtiene la lista
+					
+					for (int i = 0; i < elements.size(); i++) {
+						String element = elements.get(i);
+						outputTextArea.append(element + "\n"); // Agrega el elemento y un salto de línea
+					}
+
+					lexer.vaciarLista();
+
 				} catch(Exception error ) {
 					JOptionPane.showMessageDialog(null, "Error", "Ocurrió un error al compilar el archivo.", JOptionPane.ERROR_MESSAGE);
 				}
