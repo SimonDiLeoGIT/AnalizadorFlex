@@ -2,10 +2,9 @@ package app;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.BorderLayout;
-import javax.swing.JTextPane;
-import java.awt.TextArea;
-import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
@@ -15,6 +14,7 @@ import java.io.StringReader;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -25,8 +25,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.ScrollPaneConstants;
 
 public class View {
 
@@ -51,26 +51,33 @@ public class View {
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane_1.setBounds(10, 39, 404, 592);
+		panel.add(scrollPane_1);
 		JTextArea inputTextArea = new JTextArea();
-		inputTextArea.setBounds(10, 39, 404, 592);
+		scrollPane_1.setViewportView(inputTextArea);
 		inputTextArea.setWrapStyleWord(true);
 		inputTextArea.setLineWrap(true);
-		panel.add(inputTextArea);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(565, 39, 404, 592);
+		panel.add(scrollPane);
 		
 		JTextArea outputTextArea = new JTextArea();
-		outputTextArea.setBounds(565, 39, 404, 592);
+		scrollPane.setViewportView(outputTextArea);
 		outputTextArea.setWrapStyleWord(true);
 		outputTextArea.setLineWrap(true);
-		panel.add(outputTextArea);
 		outputTextArea.setEditable(false);
+
 		
-		JButton btnNewButton = new JButton("Compilar");
-		btnNewButton.setForeground(UIManager.getColor("Button.foreground"));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCompile = new JButton("Compilar");
+		btnCompile.setForeground(new Color(255, 255, 255));
+		btnCompile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {					
 					Reader reader = new StringReader(inputTextArea.getText());
-				//	outputTextArea.setText("Resultado de la compilacion...");
 					Lexico lexer = new Lexico(reader);
 					lexer.next_token();
 
@@ -92,10 +99,11 @@ public class View {
 				}
 			}
 		});
-		btnNewButton.setFont(new Font("Calibri", Font.PLAIN, 18));
-		btnNewButton.setBackground(UIManager.getColor("Button.background"));
-		btnNewButton.setBounds(424, 275, 131, 44);
-		panel.add(btnNewButton);
+		btnCompile.setFont(new Font("Calibri", Font.PLAIN, 18));
+		btnCompile.setBackground(new Color(0, 196, 0));
+		btnCompile.setBounds(424, 275, 131, 44);
+		btnCompile.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panel.add(btnCompile);
 		
 		JLabel lblNewLabel = new JLabel("Entrada");
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -110,6 +118,20 @@ public class View {
 		lblResultadoCompilacion.setFont(new Font("Calibri", Font.ITALIC, 20));
 		lblResultadoCompilacion.setBounds(565, 10, 231, 24);
 		panel.add(lblResultadoCompilacion);
+		
+		JButton btnClear = new JButton("Limpiar");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inputTextArea.setText("");
+				outputTextArea.setText("");
+			}
+		});
+		btnClear.setForeground(new Color(255, 255, 255));
+		btnClear.setBackground(new Color(248, 38, 38));
+		btnClear.setFont(new Font("Calibri", Font.PLAIN, 18));
+		btnClear.setBounds(424, 329, 131, 44);
+		btnClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		panel.add(btnClear);
 		
 		
 		
