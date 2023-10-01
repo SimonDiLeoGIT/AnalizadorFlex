@@ -85,9 +85,8 @@ public class View {
 				try {					
 					Reader reader = new StringReader(inputTextArea.getText());
 					// Usa la ubicacion definidad por el usuario para guardar el archivo 'ts.txt'
-					String path = filePath.getText()+ File.separator + "ts.txt";
+					String path = filePath.getText();
 					Lexico lexer = new Lexico(reader, path);
-					
 					lexer.next_token();
 
 					outputTextArea.setText("");
@@ -153,7 +152,7 @@ public class View {
 		panel.add(informationLabel);
 		
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fileChooser.setSelectedFile(new File("ts.txt"));
 		JButton exploreBtn = new JButton("Explorar ...");
 		exploreBtn.setFont(new Font("Calibri", Font.PLAIN, 12));
 		exploreBtn.addActionListener(new ActionListener() {

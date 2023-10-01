@@ -418,7 +418,7 @@ public class Lexico implements java_cup.runtime.Scanner {
     this.zzReader = in;
     try {
     	File file = new File(filePath);
-        file.createNewFile();
+    	file.createNewFile();
         writer = new PrintWriter(new FileWriter(filePath));
     } catch (IOException e) {
         e.printStackTrace();
