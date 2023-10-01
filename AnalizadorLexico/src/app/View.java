@@ -161,11 +161,13 @@ public class View {
 
 	            if (returnValue == JFileChooser.APPROVE_OPTION) {
 	                java.io.File selectedFile = fileChooser.getSelectedFile();
-	                filePath.setText("Ubicacion seleccionada: " + selectedFile.getAbsolutePath());
+	                filePath.setText(selectedFile.getAbsolutePath());
+	                informationLabel.setText("Ubicacion seleccionada:");
 	                btnCompile.setEnabled(true);
 	                btnCompile.setBackground(new Color(0, 196, 0));
 	            } else {
 	            	filePath.setText("Ubicacion no seleccionada");
+	            	informationLabel.setText("Indicar ubicacion destino del archivo ts.txt");
 	            }
 			}
 		});

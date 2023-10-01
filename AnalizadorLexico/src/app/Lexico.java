@@ -518,7 +518,7 @@ public class Lexico implements java_cup.runtime.Scanner {
       zzReader.close();
     
     if (writer != null) {
-    	String header = String.format("%-20s | %-10s | %-10s | %-20s |%-10s", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONGITUD");
+    	String header = String.format("%-25s | %-15s | %-10s | %-25s |%-5s", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONGITUD");
     	writer.println(header);
     	for(SymbolTableEntry entryInstance: tsEntries) {
     		String entry = entryInstance.getEntry();

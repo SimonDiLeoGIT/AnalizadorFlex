@@ -28,7 +28,7 @@ public class SymbolTableEntry {
 	}
 	
 	public String getEntry() {
-		return String.format("%-20s | %-10s | %-10s | %-20s |%-10s", nombre, token, tipo, valor, longitud);
+		return String.format("%-25s | %-15s | %-10s | %-25s |%-5s", nombre, token, tipo, valor, longitud);
 	}
 	
 }
