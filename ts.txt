@@ -1,0 +1,18 @@
+NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
+_12312                    | CONST_INT       | -          | 12312                     |-    
+_0125                     | CONST_INT       | -          | 0125                      |-    
+_99999.99                 | CONST_DOU       | -          | 99999.99                  |-    
+_99.                      | CONST_DOU       | -          | 99.                       |-    
+_.9999                    | CONST_DOU       | -          | .9999                     |-    
+_string1test              | CONST_STR       | -          | string1test               |11   
+_                         | CONST_STR       | -          |                           |0    
+_(F, 16)                  | CONST_HEX       | -          | (F, 16)                   |-    
+_(F12,16)                 | CONST_HEX       | -          | (F12,16)                  |-    
+H                         | ID              |            | -                         |-    
+_16                       | CONST_INT       | -          | 16                        |-    
+_(10,2)                   | CONST_BIN       | -          | (10,2)                    |-    
+_(111, 2)                 | CONST_BIN       | -          | (111, 2)                  |-    
+_5                        | CONST_INT       | -          | 5                         |-    
+_2                        | CONST_INT       | -          | 2                         |-    
+variable1                 | ID              |            | -                         |-    
+variable_2                | ID              |            | -                         |-    
