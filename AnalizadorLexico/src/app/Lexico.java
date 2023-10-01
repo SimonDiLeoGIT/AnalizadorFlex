@@ -2,6 +2,11 @@
 
 package app;
 import java_cup.runtime.*;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 
@@ -14,7 +19,11 @@ public class Lexico implements java_cup.runtime.Scanner {
 
   /** This list is for the UI. */
   private ArrayList<String> lista = new ArrayList<>();
-
+  private ArrayList<SymbolTableEntry> tsEntries = new ArrayList<>();
+  
+  private PrintWriter writer = null;
+  
+  
   /** This character denotes the end of file */
   public static final int YYEOF = -1;
 
@@ -405,8 +414,15 @@ public class Lexico implements java_cup.runtime.Scanner {
    *
    * @param   in  the java.io.Reader to read input from.
    */
-  public Lexico(java.io.Reader in) {
+  public Lexico(java.io.Reader in, String filePath) {
     this.zzReader = in;
+    try {
+    	File file = new File(filePath);
+        file.createNewFile();
+        writer = new PrintWriter(new FileWriter(filePath));
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
   }
 
 
@@ -500,6 +516,17 @@ public class Lexico implements java_cup.runtime.Scanner {
 
     if (zzReader != null)
       zzReader.close();
+    
+    if (writer != null) {
+    	String header = String.format("%-20s | %-10s | %-10s | %-20s |%-10s", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONGITUD");
+    	writer.println(header);
+    	for(SymbolTableEntry entryInstance: tsEntries) {
+    		String entry = entryInstance.getEntry();
+    		writer.println(entry);
+    	}
+        
+        writer.close();
+    }
   }
 
 
@@ -793,12 +820,14 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 2: 
             { System.out.println("Token ID, encontrado Lexema "+ yytext());
               lista.add("Token ID, encontrado Lexema "+ yytext());
+              tsEntries.add(new SymbolTableEntry(yytext(), "ID"));
             } 
             // fall through
           case 49: break;
           case 3: 
             { System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());
               lista.add("Token CONST_INT, encontrado Lexema "+ yytext());
+              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_INT"));
             } 
             // fall through
           case 50: break;
@@ -936,6 +965,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 26: 
             { System.out.println("Token CONST_DOU, encontrado Lexema "+ yytext());
               lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
+              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_DOU"));
             } 
             // fall through
           case 73: break;
@@ -978,6 +1008,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 33: 
             { System.out.println("Token CONST_STR, encontrado Lexema "+ yytext());
               lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
+              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_STR"));
             } 
             // fall through
           case 80: break;
@@ -1002,6 +1033,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 37: 
             { System.out.println("Token CONST_BIN, encontrado Lexema "+ yytext());
               lista.add("Token CONST_BIN, encontrado Lexema "+ yytext());
+              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_BIN"));
             } 
             // fall through
           case 84: break;
@@ -1026,6 +1058,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 41: 
             { System.out.println("Token CONST_HEX, encontrado Lexema "+ yytext());
               lista.add("Token CONST_HEX, encontrado Lexema "+ yytext());
+              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_HEX"));
             } 
             // fall through
           case 88: break;

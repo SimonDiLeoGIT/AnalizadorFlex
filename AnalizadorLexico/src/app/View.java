@@ -44,7 +44,7 @@ public class View {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 997, 706);
+		frame.setBounds(100, 25, 924, 761);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
@@ -62,7 +62,7 @@ public class View {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(565, 39, 404, 592);
+		scrollPane.setBounds(484, 39, 404, 592);
 		panel.add(scrollPane);
 		
 		JTextArea outputTextArea = new JTextArea();
@@ -70,7 +70,13 @@ public class View {
 		outputTextArea.setWrapStyleWord(true);
 		outputTextArea.setLineWrap(true);
 		outputTextArea.setEditable(false);
-
+		
+		
+		JLabel filePath = new JLabel("Ubicacion no seleccionada");
+		filePath.setVerticalAlignment(SwingConstants.BOTTOM);
+		filePath.setFont(new Font("Calibri", Font.ITALIC, 14));
+		filePath.setBounds(10, 659, 309, 24);
+		panel.add(filePath);
 		
 		JButton btnCompile = new JButton("Compilar");
 		btnCompile.setForeground(new Color(255, 255, 255));
@@ -78,7 +84,10 @@ public class View {
 			public void actionPerformed(ActionEvent e) {
 				try {					
 					Reader reader = new StringReader(inputTextArea.getText());
-					Lexico lexer = new Lexico(reader);
+					// Usa la ubicacion definidad por el usuario para guardar el archivo 'ts.txt'
+					String path = filePath.getText()+ File.separator + "ts.txt";
+					Lexico lexer = new Lexico(reader, path);
+					
 					lexer.next_token();
 
 					outputTextArea.setText("");
@@ -100,14 +109,14 @@ public class View {
 			}
 		});
 		btnCompile.setFont(new Font("Calibri", Font.PLAIN, 18));
-		btnCompile.setBackground(new Color(0, 196, 0));
-		btnCompile.setBounds(424, 275, 131, 44);
+		btnCompile.setBounds(484, 648, 190, 44);
 		btnCompile.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		btnCompile.setEnabled(false);
 		panel.add(btnCompile);
 		
 		JLabel lblNewLabel = new JLabel("Entrada");
 		lblNewLabel.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblNewLabel.setFont(new Font("Calibri", Font.ITALIC, 20));
+		lblNewLabel.setFont(new Font("Calibri", Font.ITALIC, 18));
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setBounds(10, 10, 104, 24);
 		panel.add(lblNewLabel);
@@ -115,8 +124,8 @@ public class View {
 		JLabel lblResultadoCompilacion = new JLabel("Resultado compilación");
 		lblResultadoCompilacion.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblResultadoCompilacion.setForeground(new Color(0, 0, 0));
-		lblResultadoCompilacion.setFont(new Font("Calibri", Font.ITALIC, 20));
-		lblResultadoCompilacion.setBounds(565, 10, 231, 24);
+		lblResultadoCompilacion.setFont(new Font("Calibri", Font.ITALIC, 18));
+		lblResultadoCompilacion.setBounds(484, 10, 231, 24);
 		panel.add(lblResultadoCompilacion);
 		
 		JButton btnClear = new JButton("Limpiar");
@@ -129,11 +138,40 @@ public class View {
 		btnClear.setForeground(new Color(255, 255, 255));
 		btnClear.setBackground(new Color(248, 38, 38));
 		btnClear.setFont(new Font("Calibri", Font.PLAIN, 18));
-		btnClear.setBounds(424, 329, 131, 44);
+		btnClear.setBounds(698, 648, 190, 44);
 		btnClear.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		panel.add(btnClear);
 		
+		JLabel lblNewLabel_1 = new JLabel("=");
+		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD, 30));
+		lblNewLabel_1.setBounds(440, 311, 15, 24);
+		panel.add(lblNewLabel_1);
 		
+		JLabel informationLabel = new JLabel("Indicar ubicacion destino del archivo ts.txt");
+		informationLabel.setFont(new Font("Calibri", Font.PLAIN, 15));
+		informationLabel.setBounds(10, 641, 404, 20);
+		panel.add(informationLabel);
+		
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		JButton exploreBtn = new JButton("Explorar ...");
+		exploreBtn.setFont(new Font("Calibri", Font.PLAIN, 12));
+		exploreBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			    int returnValue = fileChooser.showOpenDialog(null);
+
+	            if (returnValue == JFileChooser.APPROVE_OPTION) {
+	                java.io.File selectedFile = fileChooser.getSelectedFile();
+	                filePath.setText("Ubicacion seleccionada: " + selectedFile.getAbsolutePath());
+	                btnCompile.setEnabled(true);
+	                btnCompile.setBackground(new Color(0, 196, 0));
+	            } else {
+	            	filePath.setText("Ubicacion no seleccionada");
+	            }
+			}
+		});
+		exploreBtn.setBounds(329, 656, 85, 30);
+		panel.add(exploreBtn);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
