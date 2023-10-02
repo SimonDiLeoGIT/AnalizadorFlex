@@ -167,6 +167,8 @@ public class View {
 	                btnCompile.setBackground(new Color(0, 196, 0));
 	            } else {
 	            	filePath.setText("Ubicacion no seleccionada");
+	            	btnCompile.setEnabled(false);
+	            	btnCompile.setBackground(new Color(240, 240, 240));
 	            	informationLabel.setText("Indicar ubicacion destino del archivo ts.txt");
 	            }
 			}
