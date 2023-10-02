@@ -103,7 +103,9 @@ public class View {
 					lexer.vaciarLista();
 
 				} catch(Exception error ) {
-					JOptionPane.showMessageDialog(null, "Error", "Ocurrió un error al compilar el archivo.", JOptionPane.ERROR_MESSAGE);
+					outputTextArea.setForeground(Color.RED);
+					outputTextArea.setText(error.getMessage());
+					// JOptionPane.showMessageDialog(null,  error.getMessage(), "Error de compilación", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

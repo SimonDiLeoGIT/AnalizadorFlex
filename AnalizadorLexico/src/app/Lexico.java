@@ -667,9 +667,9 @@ public class Lexico implements java_cup.runtime.Scanner {
    * the end of input is encountered or an I/O-Error occurs.
    *
    * @return      the next token
-   * @exception   java.io.IOException  if any I/O-Error occurs
+ * @throws Exception 
    */
-  public java_cup.runtime.Symbol next_token() throws java.io.IOException {
+  public java_cup.runtime.Symbol next_token() throws Exception {
     int zzInput;
     int zzAction;
 
@@ -813,7 +813,7 @@ public class Lexico implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline);
+            { throw new Exception("Caracter no permitido: <" + yytext() + "> en la linea: " + (yyline + 1) + " columna: " + (yycolumn + 1));
             } 
             // fall through
           case 48: break;
