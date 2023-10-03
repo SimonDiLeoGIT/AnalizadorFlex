@@ -96,6 +96,7 @@ public class View {
 					List<String> elements = lexer.getList(); // Obtiene la lista
 					
 					for (int i = 0; i < elements.size(); i++) {
+						outputTextArea.setForeground(Color.getColor("#1b7161"));
 						String element = elements.get(i);
 						outputTextArea.append(element + "\n"); // Agrega el elemento y un salto de línea
 					}
