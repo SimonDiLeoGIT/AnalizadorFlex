@@ -1,2 +1,34 @@
-while WHILE While if If IF 12312 0125 99999.99 99. .9999 'string1test' ''  (F, 16) (F12,16) (H,16)(10,2)(111, 2) (5,2) /*asd*/ MIDDLE WRITE DEFINE ENDDEFINE PROGRAM END
-=+-/*%^<>>=<===&||!(){}[];,.: variable1 variable_2
+PROGRAM
+
+DEFINE
+    <string>:<msg>
+    <integer>:<i>
+    <float>:<d>
+    <float>:<resultado>
+DEFINEEND
+
+i=1
+msg='numero par'
+while(i < 100){
+   /* Escribe si la variable i es par */
+   if(i % 2 == 0) {
+   	write msg;
+   }
+
+   i=i+1;
+}
+
+END
+
+</ Operadores />
++ - / * % ^ < > >= <= == <> & || !
+
+</ Funcion especial MIDDLE />
+d = 10.5
+resultado:= MIDDLE (0; 45 ; [d, d*10, 12., .5])
+
+</ Constante binaria/>
+(10, 2)
+
+</ Constante hexadecimal/>
+(5A, 16)

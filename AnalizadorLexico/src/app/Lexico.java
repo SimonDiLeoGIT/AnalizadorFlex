@@ -1019,9 +1019,7 @@ public class Lexico implements java_cup.runtime.Scanner {
             // fall through
           case 81: break;
           case 35: 
-            { System.out.println("Token INLINE_COMMENT, encontrado Lexema "+ yytext());
-              lista.add("Token INLINE_COMMENT, encontrado Lexema "+ yytext());
-            } 
+            { /* no se realiza accion por lo tanto se ignoran*/} 
             // fall through
           case 82: break;
           case 36: 
