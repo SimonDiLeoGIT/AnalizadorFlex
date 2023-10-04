@@ -5,7 +5,7 @@ DEFINE
     <integer>:<i>
     <float>:<d>
     <float>:<resultado>
-DEFINEEND
+ENDDEFINE
 
 i=1
 msg='numero par'

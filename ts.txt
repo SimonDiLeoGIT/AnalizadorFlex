@@ -3,7 +3,6 @@ msg                       | ID              |            | -                    
 i                         | ID              |            | -                         |-    
 d                         | ID              |            | -                         |-    
 resultado                 | ID              |            | -                         |-    
-DEFINEEND                 | ID              |            | -                         |-    
 _1                        | CONST_INT       | -          | 1                         |-    
 _numero par               | CONST_STR       | -          | numero par                |10   
 _100                      | CONST_INT       | -          | 100                       |-    
