@@ -12,7 +12,7 @@ msg='numero par'
 while(i < 100){
    /* Escribe si la variable i es par */
    if(i % 2 == 0) {
-   	write msg;
+   	WRITE msg;
    }
 
    i=i+1;

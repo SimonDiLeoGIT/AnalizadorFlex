@@ -4,27 +4,13 @@ i                         | ID              |            | -                    
 d                         | ID              |            | -                         |-    
 resultado                 | ID              |            | -                         |-    
 DEFINEEND                 | ID              |            | -                         |-    
-i                         | ID              |            | -                         |-    
 _1                        | CONST_INT       | -          | 1                         |-    
-msg                       | ID              |            | -                         |-    
 _numero par               | CONST_STR       | -          | numero par                |10   
-i                         | ID              |            | -                         |-    
 _100                      | CONST_INT       | -          | 100                       |-    
-i                         | ID              |            | -                         |-    
 _2                        | CONST_INT       | -          | 2                         |-    
 _0                        | CONST_INT       | -          | 0                         |-    
-write                     | ID              |            | -                         |-    
-msg                       | ID              |            | -                         |-    
-i                         | ID              |            | -                         |-    
-i                         | ID              |            | -                         |-    
-_1                        | CONST_INT       | -          | 1                         |-    
-d                         | ID              |            | -                         |-    
 _10.5                     | CONST_DOU       | -          | 10.5                      |-    
-resultado                 | ID              |            | -                         |-    
-_0                        | CONST_INT       | -          | 0                         |-    
 _45                       | CONST_INT       | -          | 45                        |-    
-d                         | ID              |            | -                         |-    
-d                         | ID              |            | -                         |-    
 _10                       | CONST_INT       | -          | 10                        |-    
 _12.                      | CONST_DOU       | -          | 12.                       |-    
 _.5                       | CONST_DOU       | -          | .5                        |-    

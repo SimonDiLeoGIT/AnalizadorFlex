@@ -331,6 +331,17 @@ public class Lexico implements java_cup.runtime.Scanner {
   public void vaciarLista() {
     this.lista.clear();
   }
+  
+  public void agregarATablaDeSimbolos(String token, String valor) {
+	  boolean existe = false;
+	  for(SymbolTableEntry entrada: tsEntries) {
+		  if(entrada.getToken().equals(token) && ((entrada.getNombre().equals(valor))||(entrada.getNombre().equals("_" + valor)))) {
+			  existe = true;
+		  }
+	  }
+	  
+	  if(!existe) tsEntries.add(new SymbolTableEntry(valor, token));
+  }
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[159];
@@ -820,14 +831,14 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 2: 
             { System.out.println("Token ID, encontrado Lexema "+ yytext());
               lista.add("Token ID, encontrado Lexema "+ yytext());
-              tsEntries.add(new SymbolTableEntry(yytext(), "ID"));
+              agregarATablaDeSimbolos("ID", yytext());
             } 
             // fall through
           case 49: break;
           case 3: 
             { System.out.println("Token CONST_INT, encontrado Lexema "+ yytext());
               lista.add("Token CONST_INT, encontrado Lexema "+ yytext());
-              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_INT"));
+              agregarATablaDeSimbolos("CONST_INT", yytext());
             } 
             // fall through
           case 50: break;
@@ -965,7 +976,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 26: 
             { System.out.println("Token CONST_DOU, encontrado Lexema "+ yytext());
               lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
-              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_DOU"));
+              agregarATablaDeSimbolos("CONST_DOU", yytext());
             } 
             // fall through
           case 73: break;
@@ -1008,7 +1019,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 33: 
             { System.out.println("Token CONST_STR, encontrado Lexema "+ yytext());
               lista.add("Token CONST_STR, encontrado Lexema "+ yytext());
-              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_STR"));
+              agregarATablaDeSimbolos("CONST_STR", yytext());
             } 
             // fall through
           case 80: break;
@@ -1031,7 +1042,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 37: 
             { System.out.println("Token CONST_BIN, encontrado Lexema "+ yytext());
               lista.add("Token CONST_BIN, encontrado Lexema "+ yytext());
-              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_BIN"));
+              agregarATablaDeSimbolos("CONST_BIN", yytext());
             } 
             // fall through
           case 84: break;
@@ -1056,7 +1067,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 41: 
             { System.out.println("Token CONST_HEX, encontrado Lexema "+ yytext());
               lista.add("Token CONST_HEX, encontrado Lexema "+ yytext());
-              tsEntries.add(new SymbolTableEntry(yytext(), "CONST_HEX"));
+              agregarATablaDeSimbolos("CONST_HEX", yytext());
             } 
             // fall through
           case 88: break;

@@ -1,11 +1,11 @@
 package app;
 
 public class SymbolTableEntry {
-	String nombre;
-	String token;
-	String tipo;
-	String valor;
-	String longitud;
+	private String nombre;
+	private String token;
+	public String tipo;
+	public String valor;
+	private String longitud;
 	
 	public SymbolTableEntry (String valor, String token) {
 		this.nombre = "_" + valor;
@@ -25,6 +25,14 @@ public class SymbolTableEntry {
 			this.nombre = valor;
 			this.valor = "-";
 		}
+	}
+	
+	public String getToken() {
+		return this.token;
+	}
+	
+	public String getNombre() {
+		return this.nombre;
 	}
 	
 	public String getEntry() {
