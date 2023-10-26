@@ -98,8 +98,8 @@ WRITE = "WRITE"|"write"|"Write"
 CONST_INT = {DIGITO}+
 CONST_DOU = ({DIGITO}* "." {DIGITO}+) | ({DIGITO}+ "." {DIGITO}*)
 CONST_STR = "'" ({DIGITO}|{LETRA}|{ESPACIO})* "'"     // Agregar la posibildad de cualquier elemento y espacios
-CONST_BIN = "(" {ESPACIO}* ("0"|"1")+ {ESPACIO}* "," {ESPACIO}* "2" {ESPACIO}* ")"
-CONST_HEX = "(" {ESPACIO}* ({DIGITO} | "A" | "B" | "C" | "D" | "E" | "F")+ {ESPACIO}* "," {ESPACIO}* "16" {ESPACIO}* ")"
+CONST_BIN = "(" ("0"|"1")+  ","  "2"  ")"
+CONST_HEX = "(" ({DIGITO} | "A" | "B" | "C" | "D" | "E" | "F")+  ","  "16" ")"
 INTEGER = "INTEGER"|"integer"|"Integer"
 STRING = "STRING"|"string"|"String"
 FLOAT = "FLOAT"|"float"|"Float"
@@ -231,18 +231,39 @@ ID = {LETRA} ({LETRA} | {DIGITO} | _ ({LETRA}|{DIGITO}))*
 }
 {CONST_INT}	          {
     System.out.println("Token CONST_INT, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_INT", yytext());
-    lista.add("Token CONST_INT, encontrado Lexema "+ yytext()); 
-} /* recordar que no debe exceder los 16 bits 0 < entero < 32768 */
+    /* Verificación de rango de constante entera */
+    if((Integer.parseInt(yytext()) >= 0) && (Integer.parseInt(yytext()) <= 65535)){
+        agregarATablaDeSimbolos("CONST_INT", yytext());
+        lista.add("Token CONST_INT, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception(
+            "Constante entera fuera de rango: <" + yytext() + "> en la linea: " + (yyline + 1) + " columna: " + (yycolumn + 1)
+        );
+    }
+} /* recordar que no debe exceder los 16 bits -32768 < entero < 32767 */
 {CONST_DOU} {
     System.out.println("Token CONST_DOU, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_DOU", yytext());
-    lista.add("Token CONST_DOU, encontrado Lexema "+ yytext()); 
-} /* recordar que no debe exceder los 32 bits */
+    /* Verificación de rango de constante real */
+    if((Double.parseDouble(yytext()) >= 0) && (Double.parseDouble(yytext()) <= 4294967295.0)){
+        agregarATablaDeSimbolos("CONST_DOU", yytext());
+        lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
+    } else {
+        throw new Exception(
+            "Constante real fuera de rango: <" + yytext() + "> en la linea: " + (yyline + 1) + " columna: " + (yycolumn + 1)
+        );
+    }
+} /* recordar que no debe exceder los 32 bits -2147483648 < x < 2147483647*/
 {CONST_STR} {
     System.out.println("Token CONST_STR, encontrado Lexema "+ yytext()); 
-    agregarATablaDeSimbolos("CONST_STR", yytext());
-    lista.add("Token CONST_STR, encontrado Lexema "+ yytext()); 
+    /* Verificación de longitud de cadena de texto */
+    if(yytext().length() <= 30){
+        agregarATablaDeSimbolos("CONST_STR", yytext());
+        lista.add("Token CONST_STR, encontrado Lexema "+ yytext()); 
+    } else {
+        throw new Exception(
+            "Constante string fuera de rango: <" + yytext() + "> en la linea: " + (yyline + 1) + " columna: " + (yycolumn + 1)
+        );
+    }
 }
 {CONST_BIN} {
     System.out.println("Token CONST_BIN, encontrado Lexema "+ yytext()); 
