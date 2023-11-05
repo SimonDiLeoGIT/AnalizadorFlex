@@ -1,16 +1,16 @@
 package app;
 import java_cup.runtime.*;
 
-parser code {}
-action code {}
+parser code {: :}
+action code {: :}
 
-terminal ID, OP_ASIGN, OP_SUMA, OP_RESTA, OP_DIV, OP_MULT, OP_MOD, OP_POT, OP_MEN, OP_MAY, OP_MAY_IG, OP_MEN_IG, OP_IG,
+terminal OP_ASIGN, OP_SUMA, OP_RESTA, OP_DIV, OP_MULT, OP_MOD, OP_POT, OP_MEN, OP_MAY, OP_MAY_IG, OP_MEN_IG, OP_IG,
 OP_DIST, OP_AND, OP_OR, OP_NOT, PAREN_OPEN, PAREN_CLOSE, BLOCK_BEG, BLOCK_END, BRACK_OPEN, BRACK_CLOSE, PUNTO_COMA, COMA, PUNTO, 
-DOS_PUNTOS, WRITE, ID, CONST_INT, CONST_DOU, CONST_STR, CONST_BIN, CONST_HEX, INTEGER, STRING, FLOAT, 
-COMMENT, INLINE_COMMENT, WHILE, IF, ELSE, DEFINE, DEFINE_END, PROGRAM_BEGIN, PROGRAM_END, MIDDLE;
+DOS_PUNTOS, WRITE, ID, CONST_INT, CONST_DOU, CONST_STR, CONST_BIN, CONST_HEX, INTEGER, STRING, FLOAT,
+WHILE, IF, ELSE, DEFINE, DEFINE_END, PROGRAM_BEGIN, PROGRAM_END, MIDDLE;
 
-non terminal codigo, programa, definiciones. declaraciones, inicio_declaracion, declaracion, tipo, variable, programa_sin_variables, 
-sentencias_sin_variables, sentencia_sin_variables, impresion_sin_variables, programa, sentencias, sentencia, impresion, asignacion, identificador, 
+non terminal codigo, programa, definiciones, declaraciones, inicio_declaracion, declaracion, tipo, programa_sin_variables, 
+sentencias_sin_variables, sentencia_sin_variables, impresion_sin_variables, sentencias, sentencia, impresion, asignacion, identificador,
 seleccion, iteracion, condicion, comparacion, comparador, expresiones, expresion, termino, factor, const;
 
 start with codigo;
@@ -19,16 +19,15 @@ codigo ::= definiciones programa {: :};
 codigo ::= programa_sin_variables {: :};
 definiciones ::= DEFINE declaraciones DEFINE_END {: :};
 declaraciones ::= declaraciones inicio_declaracion {: :};
-inicio_declaracion ::= OP_MEN tipo declaracion variable OP_MAY {: :};
-declaracion ::= COMA tipo declaracion variable COMA {: :};
+inicio_declaracion ::= OP_MEN tipo declaracion ID OP_MAY {: :};
+declaracion ::= COMA tipo declaracion ID COMA {: :};
 declaracion ::= OP_MAY DOS_PUNTOS OP_MEN {: :};
-tipo ::= INTEGER {: :}| STRING {: :} | FLOAT {: :}; 
-variable ::= ID {: :};
+tipo ::= INTEGER {: :} | STRING {: :} | FLOAT {: :}; 
 programa_sin_variables ::= PROGRAM_BEGIN sentencias_sin_variables PROGRAM_END {: :};
 sentencias_sin_variables ::= sentencias_sin_variables sentencia_sin_variables {: :};
 sentencias_sin_variables ::= sentencia_sin_variables {: :};
 sentencia_sin_variables ::= impresion_sin_variables {: :};
-impresion_sin_variables ::= WRITE const | write CONST_STR {: :};
+impresion_sin_variables ::= WRITE const | WRITE CONST_STR {: :};
 programa ::= PROGRAM_BEGIN sentencias PROGRAM_END {: :};
 sentencias ::= sentencias sentencia {: :};
 sentencias ::= sentencia {: :};
@@ -36,10 +35,10 @@ sentencia ::= asignacion {: :};
 sentencia ::= iteracion {: :};
 sentencia ::= seleccion {: :};
 sentencia ::= impresion {: :};
-impresion ::= WRITE const {: :} | WRITE variable {: :} | write CONST_STR {: :};
+impresion ::= WRITE const {: :} | WRITE ID {: :} | WRITE CONST_STR {: :};
 asignacion ::= identificador OP_ASIGN expresion {: :} | identificador OP_ASIGN CONST_STR {: :};
-identificador ::= identificador OP_ASIGN identificador {: :};
-identificador  ::= ID {: :};
+identificador ::= identificador OP_ASIGN ID {: :};
+identificador ::= ID {: :};
 seleccion ::= IF PAREN_OPEN condicion PAREN_CLOSE BLOCK_BEG sentencias BLOCK_END ELSE BLOCK_BEG sentencias BLOCK_END {: :};
 seleccion ::= IF PAREN_OPEN condicion PAREN_CLOSE BLOCK_BEG sentencias BLOCK_END {: :};
 iteracion ::= WHILE PAREN_OPEN condicion PAREN_CLOSE BLOCK_BEG sentencias BLOCK_END {: :};
@@ -51,10 +50,10 @@ comparador ::= OP_MAY {: :} | OP_MEN {: :} | OP_MEN_IG {: :} | OP_MAY_IG {: :} |
 expresiones ::= expresiones COMA expresion {: :};
 expresiones ::= expresion {: :};
 expresion ::= expresion OP_SUMA termino {: :} | expresion OP_RESTA termino {: :} | termino {: :};
-termino ::= termino OP_MULT factor {: :} | termino OP_DIV factor {: :} | termino OP_POT factor {: :} | factor {: :};
-factor ::= PAREN_OPEN expresion paren_close {: :} | identificador {: :} | const {: :} | 
+termino ::= termino OP_MULT factor {: :} | termino OP_DIV factor {: :} | termino OP_POT factor {: :} | termino OP_MOD factor {: :} | factor {: :};
+factor ::= PAREN_OPEN expresion PAREN_CLOSE {: :} | ID {: :} | const {: :} | 
 MIDDLE PAREN_OPEN expresion PUNTO_COMA expresion PUNTO_COMA BRACK_OPEN expresiones BRACK_CLOSE PAREN_CLOSE {: :} | 
-MIDDLE PAREN_OPEN expresion PUNTO_COMA expresion PUNTO_COMA BRACK_OPEN BRACK_CLOSE PAREN_CLOSE {: :}
+MIDDLE PAREN_OPEN expresion PUNTO_COMA expresion PUNTO_COMA BRACK_OPEN BRACK_CLOSE PAREN_CLOSE {: :};
 const ::= CONST_INT {: :} | CONST_DOU {: :} | CONST_BIN {: :} | CONST_HEX {: :};
 
 
