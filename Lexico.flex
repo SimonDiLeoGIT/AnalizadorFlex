@@ -124,110 +124,137 @@ ID = {LETRA} ({LETRA} | {DIGITO} | _ ({LETRA}|{DIGITO}))*
 {OP_IG} {
     lista.add("Token OP_IG, encontrado Lexema "+ yytext());
     System.out.println("Token OP_IG, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_IG,yytext());
 } 
 {OP_ASIGN} {
     System.out.println("Token OP_ASIGN encontrado, Lexema: "+ yytext());
     lista.add("Token OP_ASIGN, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_ASIGN,yytext());
 }
 {OP_SUMA} {
     System.out.println("Token OP_SUMA encontrado, Lexema "+ yytext());
     lista.add("Token OP_SUMA, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_SUMA,yytext());
 }
 {OP_RESTA} {
     System.out.println("Token OP_RESTA encontrado, Lexema "+ yytext());
     lista.add("Token OP_RESTA, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_RESTA,yytext());
 }
 {OP_DIV} {
     System.out.println("Token OP_DIV encontrado, Lexema "+ yytext());
     lista.add("Token OP_DIV, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_DIV,yytext());
 }
 {OP_MULT} {
     System.out.println("Token OP_MULT encontrado, Lexema "+ yytext());
     lista.add("Token OP_MULT, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_MULT,yytext());
 }
 {OP_MOD} {
     System.out.println("Token OP_MOD encontrado, Lexema "+ yytext());
     lista.add("Token OP_MOD, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_MOD,yytext());
 }
 {OP_POT} {
     System.out.println("Token OP_POT encontrado, Lexema "+ yytext());
     lista.add("Token OP_POT, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_POT,yytext());
 }
 {OP_MAY_IG} {
     System.out.println("Token OP_MAY_IG encontrado, Lexema "+ yytext());
     lista.add("Token OP_MAY_IG, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_MAY_IG,yytext());
 }
 {OP_MEN_IG} {
     System.out.println("Token OP_MEN_IG encontrado, Lexema "+ yytext());
     lista.add("Token OP_MEN_IG, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_MEN_IG,yytext());
 }
 {OP_MEN} {
     System.out.println("Token OP_MEN encontrado, Lexema "+ yytext());
     lista.add("Token OP_MEN, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_MEN,yytext());
 }
 {OP_MAY} {
     System.out.println("Token OP_MAY encontrado, Lexema "+ yytext());
     lista.add("Token OP_MAY, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_MAY,yytext());
 }
 {OP_DIST} {
     System.out.println("Token OP_DIST, Lexema "+ yytext());
     lista.add("Token OP_DIST, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_DIST,yytext());
 } 
 {OP_AND} {
     System.out.println("Token OP_AND, encontrado Lexema "+ yytext());
     lista.add("Token OP_AND, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_AND,yytext());
 } 
 {OP_OR} {
     System.out.println("Token OP_OR, encontrado Lexema "+ yytext());
-    lista.add("Token OP_OR, encontrado Lexema "+ yytext()); 
+    lista.add("Token OP_OR, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_OR,yytext()); 
 }
 {OP_NOT} {
     System.out.println("Token OP_NOT, encontrado Lexema "+ yytext());
     lista.add("Token OP_NOT, encontrado Lexema "+ yytext());
+    return new Symbol(sym.OP_NOT,yytext()); 
 } 
 {PAREN_OPEN} {
     System.out.println("Token PAREN_OPEN, encontrado Lexema "+ yytext());
-    lista.add("Token PAREN_OPEN, encontrado Lexema "+ yytext()); 
+    lista.add("Token PAREN_OPEN, encontrado Lexema "+ yytext());
+    return new Symbol(sym.PAREN_OPEN,yytext()); 
 }
 {PAREN_CLOSE} {
     System.out.println("Token PAREN_CLOSE, encontrado Lexema "+ yytext());
     lista.add("Token PAREN_CLOSE, encontrado Lexema "+ yytext()); 
+    return new Symbol(sym.PAREN_CLOSE,yytext()); 
 }
 {BLOCK_BEG} {
     System.out.println("Token BLOCK_BEG, encontrado Lexema "+ yytext());
-    lista.add("Token BLOCK_BEG, encontrado Lexema "+ yytext()); 
+    lista.add("Token BLOCK_BEG, encontrado Lexema "+ yytext());
+    return new Symbol(sym.BLOCK_BEG,yytext()); 
 }
 {BLOCK_END} {
     System.out.println("Token BLOCK_END, encontrado Lexema "+ yytext());
-    lista.add("Token BLOCK_END, encontrado Lexema "+ yytext()); 
+    lista.add("Token BLOCK_END, encontrado Lexema "+ yytext());
+    return new Symbol(sym.BLOCK_END,yytext()); 
 }
 {BRACK_OPEN} {
     System.out.println("Token BRACK_OPEN, encontrado Lexema "+ yytext());
-    lista.add("Token BRACK_OPEN, encontrado Lexema "+ yytext()); 
+    lista.add("Token BRACK_OPEN, encontrado Lexema "+ yytext());
+    return new Symbol(sym.BRACK_OPEN,yytext()); 
 }
 {BRACK_CLOSE} {
     System.out.println("Token BRACK_CLOSE, encontrado Lexema "+ yytext());
-    lista.add("Token BRACK_CLOSE, encontrado Lexema "+ yytext()); 
+    lista.add("Token BRACK_CLOSE, encontrado Lexema "+ yytext());
+    return new Symbol(sym.BRACK_CLOSE,yytext()); 
 }
 {PUNTO_COMA} {
     System.out.println("Token PUNTO_COMA, encontrado Lexema "+ yytext());
-    lista.add("Token PUNTO_COMA, encontrado Lexema "+ yytext()); 
+    lista.add("Token PUNTO_COMA, encontrado Lexema "+ yytext());
+    return new Symbol(sym.PUNTO_COMA,yytext()); 
 }
 {COMA} {
     System.out.println("Token COMA, encontrado Lexema "+ yytext());
-    lista.add("Token COMA, encontrado Lexema "+ yytext()); 
+    lista.add("Token COMA, encontrado Lexema "+ yytext());
+    return new Symbol(sym.COMA,yytext()); 
 }
 {PUNTO} {
     System.out.println("Token PUNTO, encontrado Lexema "+ yytext());
-    lista.add("Token PUNTO, encontrado Lexema "+ yytext()); 
+    lista.add("Token PUNTO, encontrado Lexema "+ yytext());
+    return new Symbol(sym.PUNTO,yytext()); 
 }
 {DOS_PUNTOS} {
     System.out.println("Token DOS_PUNTOS, encontrado Lexema "+ yytext());
-    lista.add("Token DOS_PUNTOS, encontrado Lexema "+ yytext()); 
+    lista.add("Token DOS_PUNTOS, encontrado Lexema "+ yytext());
+    return new Symbol(sym.DOS_PUNTOS,yytext()); 
 }
 {WRITE} {
     System.out.println("Token WRITE, encontrado Lexema "+ yytext());
-    lista.add("Token WRITE, encontrado Lexema "+ yytext()); 
+    lista.add("Token WRITE, encontrado Lexema "+ yytext());
+    return new Symbol(sym.WRITE,yytext()); 
 }
 {CONST_INT}	          {
     System.out.println("Token CONST_INT, encontrado Lexema "+ yytext()); 
@@ -235,6 +262,7 @@ ID = {LETRA} ({LETRA} | {DIGITO} | _ ({LETRA}|{DIGITO}))*
     if((Integer.parseInt(yytext()) >= 0) && (Integer.parseInt(yytext()) <= 65535)){
         agregarATablaDeSimbolos("CONST_INT", yytext());
         lista.add("Token CONST_INT, encontrado Lexema "+ yytext());
+        return new Symbol(sym.CONST_INT,yytext()); 
     } else {
         throw new Exception(
             "Constante entera fuera de rango: <" + yytext() + "> en la linea: " + (yyline + 1) + " columna: " + (yycolumn + 1)
@@ -247,6 +275,7 @@ ID = {LETRA} ({LETRA} | {DIGITO} | _ ({LETRA}|{DIGITO}))*
     if((Double.parseDouble(yytext()) >= 0) && (Double.parseDouble(yytext()) <= 4294967295.0)){
         agregarATablaDeSimbolos("CONST_DOU", yytext());
         lista.add("Token CONST_DOU, encontrado Lexema "+ yytext());
+        return new Symbol(sym.CONST_DOU,yytext()); 
     } else {
         throw new Exception(
             "Constante real fuera de rango: <" + yytext() + "> en la linea: " + (yyline + 1) + " columna: " + (yycolumn + 1)
@@ -259,6 +288,7 @@ ID = {LETRA} ({LETRA} | {DIGITO} | _ ({LETRA}|{DIGITO}))*
     if(yytext().length() <= 30){
         agregarATablaDeSimbolos("CONST_STR", yytext());
         lista.add("Token CONST_STR, encontrado Lexema "+ yytext()); 
+        return new Symbol(sym.CONST_STR,yytext()); 
     } else {
         throw new Exception(
             "Constante string fuera de rango: <" + yytext() + "> en la linea: " + (yyline + 1) + " columna: " + (yycolumn + 1)
@@ -268,61 +298,75 @@ ID = {LETRA} ({LETRA} | {DIGITO} | _ ({LETRA}|{DIGITO}))*
 {CONST_BIN} {
     System.out.println("Token CONST_BIN, encontrado Lexema "+ yytext()); 
     agregarATablaDeSimbolos("CONST_BIN", yytext());
-    lista.add("Token CONST_BIN, encontrado Lexema "+ yytext()); 
+    lista.add("Token CONST_BIN, encontrado Lexema "+ yytext());
+    return new Symbol(sym.CONST_BIN,yytext()); 
 }
 {CONST_HEX} {
     System.out.println("Token CONST_HEX, encontrado Lexema "+ yytext()); 
     agregarATablaDeSimbolos("CONST_HEX", yytext());
-    lista.add("Token CONST_HEX, encontrado Lexema "+ yytext()); 
+    lista.add("Token CONST_HEX, encontrado Lexema "+ yytext());
+    return new Symbol(sym.CONST_HEX,yytext()); 
 }
 {INTEGER}  {
     System.out.println("Token INTEGER, encontrado Lexema "+ yytext()); 
-    lista.add("Token INTEGER, encontrado Lexema "+ yytext()); 
+    lista.add("Token INTEGER, encontrado Lexema "+ yytext());
+    return new Symbol(sym.INTEGER,yytext()); 
 }
 {STRING} {
     System.out.println("Token STRING, encontrado Lexema "+ yytext());
     lista.add("Token STRING, encontrado Lexema "+ yytext()); 
+    return new Symbol(sym.STRING,yytext()); 
 }
 {FLOAT} {
     System.out.println("Token FLOAT, encontrado Lexema "+ yytext()); 
-    lista.add("Token FLOAT, encontrado Lexema "+ yytext()); 
+    lista.add("Token FLOAT, encontrado Lexema "+ yytext());
+    return new Symbol(sym.FLOAT,yytext()); 
 }
 {WHILE} {
     System.out.println("Token WHILE, encontrado Lexema "+ yytext());
     lista.add("Token WHILE, encontrado Lexema "+ yytext()); 
+    return new Symbol(sym.WHILE,yytext()); 
 }
 {IF} {
     System.out.println("Token IF, encontrado Lexema "+ yytext());
     lista.add("Token IF, encontrado Lexema "+ yytext()); 
+    return new Symbol(sym.IF,yytext()); 
 }
 {ELSE} {
     System.out.println("Token ELSE, encontrado Lexema "+ yytext());
     lista.add("Token ELSE, encontrado Lexema "+ yytext()); 
+    return new Symbol(sym.ELSE,yytext()); 
 }
 {DEFINE}  {
     System.out.println("Token DEFINE, encontrado Lexema "+ yytext());
     lista.add("Token DEFINE, encontrado Lexema "+ yytext()); 
+    return new Symbol(sym.DEFINE,yytext()); 
 }
 {DEFINE_END} {
     System.out.println("Token DEFINE_END, encontrado Lexema "+ yytext());
     lista.add("Token DEFINE_END, encontrado Lexema "+ yytext()); 
+    return new Symbol(sym.DEFINE_END,yytext()); 
 }
 {PROGRAM_BEGIN} {
     System.out.println("Token PROGRAM_BEGIN, encontrado Lexema "+ yytext());
     lista.add("Token PROGRAM_BEGIN, encontrado Lexema "+ yytext());
+    return new Symbol(sym.PROGRAM_BEGIN,yytext()); 
 }
 {PROGRAM_END} {
     System.out.println("Token PROGRAM_END, encontrado Lexema "+ yytext());
-    lista.add("Token PROGRAM_END, encontrado Lexema "+ yytext()); 
+    lista.add("Token PROGRAM_END, encontrado Lexema "+ yytext());
+    return new Symbol(sym.PROGRAM_END,yytext()); 
 }
 {MIDDLE}  {
     System.out.println("Token MIDDLE, encontrado Lexema "+ yytext());
-    lista.add("Token MIDDLE, encontrado Lexema "+ yytext()); 
+    lista.add("Token MIDDLE, encontrado Lexema "+ yytext());
+    return new Symbol(sym.MIDDLE,yytext()); 
 }
 {ID} {
     lista.add("Token ID, encontrado Lexema "+ yytext());
     System.out.println("Token ID, encontrado Lexema "+ yytext()); 
     agregarATablaDeSimbolos("ID", yytext());
+    return new Symbol(sym.ID,yytext()); 
 }
 {ESPACIO}		      {/* no se realiza accion por lo tanto se ignoran*/}
 {COMMENT}	          {/* no se realiza accion por lo tanto se ignoran*/}
