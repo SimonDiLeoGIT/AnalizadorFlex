@@ -87,13 +87,16 @@ public class View {
 					// Usa la ubicacion definidad por el usuario para guardar el archivo 'ts.txt'
 					String path = filePath.getText();
 					Lexico lexer = new Lexico(reader, path);
-					lexer.next_token();
+			        parser sintactico= new parser(lexer);
+			        sintactico.parse();
+					//lexer.next_token();
 
 					outputTextArea.setText("");
 
 					// Obtengo la lista de elementos que fue guardando el Lexico
 
-					List<String> elements = lexer.getList(); // Obtiene la lista
+					//List<String> elements = lexer.getList(); // Obtiene la lista
+					List<String> elements = sintactico.getList();
 					
 					for (int i = 0; i < elements.size(); i++) {
 						outputTextArea.setForeground(Color.getColor("#1b7161"));
