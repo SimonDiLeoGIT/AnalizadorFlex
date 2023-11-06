@@ -3,23 +3,14 @@
 ## Instrucciones
 
 -   Agregar el jar de javacup (java-cup-11b-runtime_2) al build path del proyecto java.
--   Crear el archivo 'prueba.txt' con las cadenas que se quieren detectar
--   Ejecutar la aplicación
+-   Ejecutar la aplicación.
+-   Indicar el path donde queres almacenar la tabla de simbolos generada.
+-   Compilar
 
-### Error Lexico.java
+### Lexico.java
 
-Si realizas un cambio en el archivo Lexico.flex y lo compilas usando el jar de jflex, el archivo Lexico.java marca error en una linea específica.
+Si realizas un cambio en el archivo Lexico.flex y lo compilas usando el jar de jFlex. Luego, reemplazas el archivo Lexico.java del proyecto con el nuevo .java generado por la libreria.
 
-#### Solucion
+### parser.java & sym.java
 
-El error lo marca en el valor de retorno de esta linea
-
-```java
-return new java_cup.runtime.Symbol(sym.EOF);
-```
-
-La solucion es cambiar para que retorne null y asi funciona
-
-```java
-return null;
-```
+Si realizas un cambio en el archivo Sintactico.cup y lo compilas usando el jar de JavaCup. Luego, reemplazas ambos archivos con los nuevos sym.java y parser.java generados por la libreria.
