@@ -1,9 +1,5 @@
 package app;
 import java_cup.runtime.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 %%
@@ -18,21 +14,13 @@ import java.util.*;
 %{
     private ArrayList<String> lista = new ArrayList<>();
     private ArrayList<SymbolTableEntry> tsEntries = new ArrayList<>();
-    private PrintWriter writer = null;
-
-    public Lexico(java.io.Reader in, String filePath) {
-        this.zzReader = in;
-        try {
-            File file = new File(filePath);
-            file.createNewFile();
-            writer = new PrintWriter(new FileWriter(filePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     
     public ArrayList getList() {
         return this.lista;
+    }
+
+    public ArrayList<SymbolTableEntry> getTS(){
+        return this.tsEntries;
     }
 
     public void vaciarLista() {
@@ -51,19 +39,6 @@ import java.util.*;
     }
 %}
 
-
-%eof{
-    if (writer != null) {
-    	String header = String.format("%-25s | %-15s | %-10s | %-25s |%-5s", "NOMBRE", "TOKEN", "TIPO", "VALOR", "LONGITUD");
-    	writer.println(header);
-    	for(SymbolTableEntry entryInstance: tsEntries) {
-    		String entry = entryInstance.getEntry();
-    		writer.println(entry);
-    	}
-        
-        writer.close();
-    }
-%eof}
 
 LETRA = [a-zA-Z]
 DIGITO = [0-9]

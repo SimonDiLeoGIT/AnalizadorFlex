@@ -4,17 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 parser code {:
+    private List<String> reglas = new ArrayList<String>();
+    private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
+    
+    public parser(java_cup.runtime.Scanner s, ArrayList<SymbolTableEntry> table) {
+        super(s);
+        parser.ts = table;
+    }
+
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
         System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
             + s + " no reconocido. valor " + s.value );
     }
 
-    private List<String> reglas = new ArrayList<String>();
-
     public List<String> getList() {
         return this.reglas;
     }
+    
+    public static List<SymbolTableEntry> getTS() {
+        return ts;
+    }
+
+    public void addDataType (String id, String type){
+        // Agregar el tipo de dato a la entrada en la tabla de simbolos.
+    }
+
+    public void agregarTipo(Object id, Object type) {
+        for (SymbolTableEntry entrada : ts) {
+            if (entrada.getToken().equals("ID") && entrada.getNombre().equals(id)) {
+                entrada.tipo = (String) type;
+            }
+        }
+  }
+
+
 :}
 
 action code {: 
@@ -37,10 +61,20 @@ codigo ::= programa_sin_variables {: reglas.add("[Regla 0] codigo: El programa c
 definiciones ::= DEFINE declaraciones DEFINE_END {: reglas.add("[Regla 1] DEFINE declaraciones DEFINE_END"); :};
 declaraciones ::= declaraciones inicio_declaracion {: reglas.add("[Regla 2] inicio_declaracion declaracion"); :};
 declaraciones ::= inicio_declaracion {: reglas.add("[Regla 3] inicio_declaracion declaracion"); :}; 
-inicio_declaracion ::= OP_MEN tipo declaracion ID OP_MAY {: reglas.add("[Regla 4] OP_MEN tipo declaracion ID OP_MAY"); :};
-declaracion ::= COMA tipo declaracion ID COMA {: reglas.add("[Regla 5] COMA tipo declaracion ID COMA"); :};
+inicio_declaracion ::= OP_MEN tipo:type declaracion ID:id OP_MAY {: 
+    reglas.add("[Regla 4] OP_MEN tipo declaracion ID OP_MAY"); 
+    RESULT = id;
+    agregarTipo(id, type);
+:};
+declaracion ::= COMA tipo:type declaracion ID:id COMA {: 
+    reglas.add("[Regla 5] COMA tipo declaracion ID COMA");
+    RESULT = id;
+    agregarTipo(id, type);
+:};
 declaracion ::= OP_MAY DOS_PUNTOS OP_MEN {: reglas.add("[Regla 6] OP_MAY DOS_PUNTOS OP_MEN"); :};
-tipo ::= INTEGER {: reglas.add("[Regla 7] INTEGER"); :} | STRING {: reglas.add("[Regla 8] STRING"); :} | FLOAT {: reglas.add("[Regla 9] FLOAT"); :}; 
+tipo ::= INTEGER:integer{: reglas.add("[Regla 7] INTEGER /" + integer); RESULT = integer; :} | 
+    STRING:string {: reglas.add("[Regla 8] STRING /" + string); RESULT = string; :} | 
+    FLOAT:fl {: reglas.add("[Regla 9] FLOAT /" + fl); RESULT = fl; :}; 
 programa_sin_variables ::= PROGRAM_BEGIN sentencias_sin_variables PROGRAM_END {: reglas.add("[Regla 10] PROGRAM_BEGIN sentencias_sin_variables PROGRAM_END"); :};
 sentencias_sin_variables ::= sentencias_sin_variables sentencia_sin_variables {: reglas.add("[Regla 11] sentencias_sin_variables sentencia_sin_variables"); :};
 sentencias_sin_variables ::= sentencia_sin_variables {: reglas.add("[Regla 12] sentencia_sin_variables"); :};

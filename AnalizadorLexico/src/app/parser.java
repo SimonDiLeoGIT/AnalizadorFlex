@@ -303,17 +303,41 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
+    private List<String> reglas = new ArrayList<String>();
+    private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
+    
+    public parser(java_cup.runtime.Scanner s, ArrayList<SymbolTableEntry> table) {
+        super(s);
+        parser.ts = table;
+    }
+
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
         System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
             + s + " no reconocido. valor " + s.value );
     }
 
-    private List<String> reglas = new ArrayList<String>();
-
     public List<String> getList() {
         return this.reglas;
     }
+    
+    public static List<SymbolTableEntry> getTS() {
+        return ts;
+    }
+
+    public void addDataType (String id, String type){
+        // Agregar el tipo de dato a la entrada en la tabla de simbolos.
+    }
+
+    public void agregarTipo(Object id, Object type) {
+        for (SymbolTableEntry entrada : ts) {
+            if (entrada.getToken().equals("ID") && entrada.getNombre().equals(id)) {
+                entrada.tipo = (String) type;
+            }
+        }
+  }
+
+
 
 
 /** Cup generated class to encapsulate user supplied action code.*/
@@ -407,7 +431,17 @@ class CUP$parser$actions {
           case 6: // inicio_declaracion ::= OP_MEN tipo declaracion ID OP_MAY 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 4] OP_MEN tipo declaracion ID OP_MAY"); 
+		int typeleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).left;
+		int typeright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).right;
+		Object type = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-3)).value;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		Object id = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		 
+    reglas.add("[Regla 4] OP_MEN tipo declaracion ID OP_MAY"); 
+    RESULT = id;
+    agregarTipo(id, type);
+
               CUP$parser$result = parser.getSymbolFactory().newSymbol("inicio_declaracion",4, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -416,7 +450,17 @@ class CUP$parser$actions {
           case 7: // declaracion ::= COMA tipo declaracion ID COMA 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 5] COMA tipo declaracion ID COMA"); 
+		int typeleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).left;
+		int typeright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)).right;
+		Object type = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-3)).value;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)).right;
+		Object id = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-1)).value;
+		 
+    reglas.add("[Regla 5] COMA tipo declaracion ID COMA");
+    RESULT = id;
+    agregarTipo(id, type);
+
               CUP$parser$result = parser.getSymbolFactory().newSymbol("declaracion",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -434,7 +478,10 @@ class CUP$parser$actions {
           case 9: // tipo ::= INTEGER 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 7] INTEGER"); 
+		int integerleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int integerright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object integer = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 reglas.add("[Regla 7] INTEGER /" + integer); RESULT = integer; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -443,7 +490,10 @@ class CUP$parser$actions {
           case 10: // tipo ::= STRING 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 8] STRING"); 
+		int stringleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int stringright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object string = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 reglas.add("[Regla 8] STRING /" + string); RESULT = string; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -452,7 +502,10 @@ class CUP$parser$actions {
           case 11: // tipo ::= FLOAT 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 9] FLOAT"); 
+		int flleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int flright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object fl = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
+		 reglas.add("[Regla 9] FLOAT /" + fl); RESULT = fl; 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",6, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

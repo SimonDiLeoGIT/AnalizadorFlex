@@ -1,22 +1,22 @@
 DEFINE
-    <string>:<msg>
-    <integer>:<i>
-    <float>:<d>
-    <integer, integer>:<resultado, number>
+    <string>:<var_string>
+    <integer>:<var_entera>
+    <float>:<var_float>
+    <integer, integer>:<var2_entera, var3_entera>
 ENDDEFINE
 
 PROGRAM
-i=1
-msg='numero par'
-while((i) < (100)){
-   /* Escribe si la variable i es par */
-   if((i % 2) == (0)) {
-       WRITE msg
+var_entera=1
+var_string='numero par'
+while((var_entera) < (100)){
+   /* Escribe si var_entera es par */
+   if((var_entera % 2) == (0)) {
+       WRITE var_string
    }
 
-   i=i+1
+   var_entera = var_entera + 1
 }
 
-resultado = middle(i+1; 50; []) 
-resultado = middle(i+1; 50; [1+4, 2+5])
+resultado = middle(var_entera + 1; 50; []) 
+resultado = middle(var_entera; 50; [1+4, 2+5])
 END

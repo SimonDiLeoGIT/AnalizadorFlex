@@ -1,17 +1,15 @@
 NOMBRE                    | TOKEN           | TIPO       | VALOR                     |LONGITUD
-msg                       | ID              |            | -                         |-    
-i                         | ID              |            | -                         |-    
-d                         | ID              |            | -                         |-    
-resultado                 | ID              |            | -                         |-    
+var_string                | ID              | string     | -                         |-    
+var_entera                | ID              | integer    | -                         |-    
+var_float                 | ID              | float      | -                         |-    
+var2_entera               | ID              | integer    | -                         |-    
+var3_entera               | ID              | integer    | -                         |-    
 _1                        | CONST_INT       | -          | 1                         |-    
 _numero par               | CONST_STR       | -          | numero par                |10   
 _100                      | CONST_INT       | -          | 100                       |-    
 _2                        | CONST_INT       | -          | 2                         |-    
 _0                        | CONST_INT       | -          | 0                         |-    
-_10.5                     | CONST_DOU       | -          | 10.5                      |-    
-_45                       | CONST_INT       | -          | 45                        |-    
-_10                       | CONST_INT       | -          | 10                        |-    
-_12.                      | CONST_DOU       | -          | 12.                       |-    
-_.5                       | CONST_DOU       | -          | .5                        |-    
-_(10, 2)                  | CONST_BIN       | -          | (10, 2)                   |-    
-_(5A, 16)                 | CONST_HEX       | -          | (5A, 16)                  |-    
+resultado                 | ID              |            | -                         |-    
+_50                       | CONST_INT       | -          | 50                        |-    
+_4                        | CONST_INT       | -          | 4                         |-    
+_5                        | CONST_INT       | -          | 5                         |-    
