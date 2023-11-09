@@ -1,6 +1,7 @@
 DEFINE
     <string>:<var_string>
     <integer>:<var_entera>
+    <integer>:<resultado>
     <float>:<var_float>
     <integer, integer>:<var2_entera, var3_entera>
 ENDDEFINE
