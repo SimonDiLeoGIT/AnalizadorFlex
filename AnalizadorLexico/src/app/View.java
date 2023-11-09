@@ -88,12 +88,13 @@ public class View {
     btnCompile.addActionListener(
       new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          try {
+        	parser sintactico = null;
+        	try {
             Reader reader = new StringReader(inputTextArea.getText());
             // Usa la ubicacion definidad por el usuario para guardar el archivo 'ts.txt'
             String path = filePath.getText();
             Lexico lexer = new Lexico(reader);
-            parser sintactico = new parser(lexer, lexer.getTS());
+            sintactico = new parser(lexer, lexer.getTS());
             sintactico.parse();
             //lexer.next_token();
 
@@ -140,7 +141,7 @@ public class View {
             }
           } catch (Exception error) {
             outputTextArea.setForeground(Color.RED);
-            outputTextArea.setText(error.getMessage());
+            outputTextArea.setText(parser.getErrorMsg());            	
             // JOptionPane.showMessageDialog(null,  error.getMessage(), "Error de compilación", JOptionPane.ERROR_MESSAGE);
           }
         }

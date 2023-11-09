@@ -6,7 +6,8 @@ import java.util.List;
 parser code {:
     private List<String> reglas = new ArrayList<String>();
     private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
-    
+    private static String errorMsg;
+
     public parser(java_cup.runtime.Scanner s, ArrayList<SymbolTableEntry> table) {
         super(s);
         parser.ts = table;
@@ -14,8 +15,8 @@ parser code {:
 
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
-        System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
-            + s + " no reconocido. valor " + s.value );
+        errorMsg = "Error en la linea " + (s.right + 1) + " columna " + (s.left + 1) + ". "
+            + s + " no reconocido. valor " + s.value;
     }
 
     public List<String> getList() {
@@ -26,8 +27,8 @@ parser code {:
         return ts;
     }
 
-    public void addDataType (String id, String type){
-        // Agregar el tipo de dato a la entrada en la tabla de simbolos.
+    public static String getErrorMsg() {
+        return errorMsg;
     }
 
     public void agregarTipo(Object id, Object type) {
@@ -59,8 +60,8 @@ start with codigo;
 codigo ::= definiciones programa {: reglas.add("[Regla 0] codigo: El programa compila correctamente"); :};
 codigo ::= programa_sin_variables {: reglas.add("[Regla 0] codigo: El programa compila correctamente"); :};
 definiciones ::= DEFINE declaraciones DEFINE_END {: reglas.add("[Regla 1] DEFINE declaraciones DEFINE_END"); :};
-declaraciones ::= declaraciones inicio_declaracion {: reglas.add("[Regla 2] inicio_declaracion declaracion"); :};
-declaraciones ::= inicio_declaracion {: reglas.add("[Regla 3] inicio_declaracion declaracion"); :}; 
+declaraciones ::= declaraciones inicio_declaracion {: reglas.add("[Regla 2] declaraciones inicio_declaracion"); :};
+declaraciones ::= inicio_declaracion {: reglas.add("[Regla 3] inicio_declaracion"); :}; 
 inicio_declaracion ::= OP_MEN tipo:type declaracion ID:id OP_MAY {: 
     reglas.add("[Regla 4] OP_MEN tipo declaracion ID OP_MAY"); 
     RESULT = id;

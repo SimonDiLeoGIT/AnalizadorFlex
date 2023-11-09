@@ -305,7 +305,8 @@ public class parser extends java_cup.runtime.lr_parser {
 
     private List<String> reglas = new ArrayList<String>();
     private static List<SymbolTableEntry> ts = new ArrayList<SymbolTableEntry>();
-    
+    private static String errorMsg;
+
     public parser(java_cup.runtime.Scanner s, ArrayList<SymbolTableEntry> table) {
         super(s);
         parser.ts = table;
@@ -313,8 +314,8 @@ public class parser extends java_cup.runtime.lr_parser {
 
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
-        System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
-            + s + " no reconocido. valor " + s.value );
+        errorMsg = "Error en la linea " + (s.right + 1) + " columna " + (s.left + 1) + ". "
+            + s + " no reconocido. valor " + s.value;
     }
 
     public List<String> getList() {
@@ -325,8 +326,8 @@ public class parser extends java_cup.runtime.lr_parser {
         return ts;
     }
 
-    public void addDataType (String id, String type){
-        // Agregar el tipo de dato a la entrada en la tabla de simbolos.
+    public static String getErrorMsg() {
+        return errorMsg;
     }
 
     public void agregarTipo(Object id, Object type) {
@@ -413,7 +414,7 @@ class CUP$parser$actions {
           case 4: // declaraciones ::= declaraciones inicio_declaracion 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 2] inicio_declaracion declaracion"); 
+		 reglas.add("[Regla 2] declaraciones inicio_declaracion"); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("declaraciones",3, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -422,7 +423,7 @@ class CUP$parser$actions {
           case 5: // declaraciones ::= inicio_declaracion 
             {
               Object RESULT =null;
-		 reglas.add("[Regla 3] inicio_declaracion declaracion"); 
+		 reglas.add("[Regla 3] inicio_declaracion"); 
               CUP$parser$result = parser.getSymbolFactory().newSymbol("declaraciones",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
