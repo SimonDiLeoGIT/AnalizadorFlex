@@ -314,7 +314,7 @@ public class parser extends java_cup.runtime.lr_parser {
 
     // Metodo al que se llama automaticamente ante algun error sintactico.
     public void syntax_error(Symbol s){
-        errorMsg = "Error en la linea " + (s.right + 1) + " columna " + (s.left + 1) + ". "
+        errorMsg = "Error en la linea " + (s.right - 1) + ". "
             + s + " no reconocido. valor " + s.value;
     }
 

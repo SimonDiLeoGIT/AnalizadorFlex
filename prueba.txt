@@ -6,12 +6,13 @@ DEFINE
 ENDDEFINE
 
 PROGRAM
-var_entera=1
-var_string='numero par'
+var_entera = 1
 while((var_entera) < (100)){
    /* Escribe si var_entera es par */
    if((var_entera % 2) == (0)) {
        WRITE var_string
+   } else {
+       WRITE 'NO'
    }
 
    var_entera = var_entera + 1
