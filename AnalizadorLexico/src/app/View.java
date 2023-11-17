@@ -245,7 +245,7 @@ public class View {
               BufferedReader bufferedReader = new BufferedReader(fileReader);
               String linea;
               while ((linea = bufferedReader.readLine()) != null) {
-                inputTextArea.append(linea);
+                inputTextArea.append(linea + "\n");
               }
 
               bufferedReader.close();
