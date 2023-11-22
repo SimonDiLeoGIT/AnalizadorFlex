@@ -140,9 +140,13 @@ public class View {
               writer.close();
             }
           } catch (Exception error) {
-            outputTextArea.setForeground(Color.RED);
-            outputTextArea.setText(parser.getErrorMsg());            	
-            // JOptionPane.showMessageDialog(null,  error.getMessage(), "Error de compilación", JOptionPane.ERROR_MESSAGE);
+          	outputTextArea.setForeground(Color.RED);
+            if(!error.getMessage().equals("Can't recover from previous error(s)")) {
+            	//JOptionPane.showMessageDialog(null,  error.getMessage(), "Constante fuera de rango", JOptionPane.ERROR_MESSAGE);
+                outputTextArea.setText(error.getMessage());
+            } else {
+                outputTextArea.setText(parser.getErrorMsg());	
+            }
           }
         }
       }
