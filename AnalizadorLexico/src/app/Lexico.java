@@ -815,15 +815,15 @@ public class Lexico implements java_cup.runtime.Scanner {
             break;
           case 3:
             {
-              System.out.println(
-                "Token CONST_INT, encontrado Lexema " + yytext()
-              );
               /* Verificación de rango de constante entera */
               if (
                 (Integer.parseInt(yytext()) >= 0) &&
                 (Integer.parseInt(yytext()) <= 65535)
               ) {
                 agregarATablaDeSimbolos("CONST_INT", yytext());
+                System.out.println(
+                  "Token CONST_INT, encontrado Lexema " + yytext()
+                );
                 lista.add("Token CONST_INT, encontrado Lexema " + yytext());
                 return new Symbol(
                   sym.CONST_INT,
@@ -1125,15 +1125,15 @@ public class Lexico implements java_cup.runtime.Scanner {
             break;
           case 26:
             {
-              System.out.println(
-                "Token CONST_DOU, encontrado Lexema " + yytext()
-              );
               /* Verificación de rango de constante real */
               if (
                 (Double.parseDouble(yytext()) >= 0) &&
                 (Double.parseDouble(yytext()) <= 4294967295.0)
               ) {
                 agregarATablaDeSimbolos("CONST_DOU", yytext());
+                System.out.println(
+                  "Token CONST_DOU, encontrado Lexema " + yytext()
+                );
                 lista.add("Token CONST_DOU, encontrado Lexema " + yytext());
                 return new Symbol(
                   sym.CONST_DOU,
@@ -1230,12 +1230,12 @@ public class Lexico implements java_cup.runtime.Scanner {
             break;
           case 33:
             {
-              System.out.println(
-                "Token CONST_STR, encontrado Lexema " + yytext()
-              );
               /* Verificación de longitud de cadena de texto */
               if (yytext().length() <= 30) {
                 agregarATablaDeSimbolos("CONST_STR", yytext());
+                System.out.println(
+                  "Token CONST_STR, encontrado Lexema " + yytext()
+                );
                 lista.add("Token CONST_STR, encontrado Lexema " + yytext());
                 return new Symbol(
                   sym.CONST_STR,
